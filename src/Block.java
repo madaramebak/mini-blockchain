@@ -12,7 +12,14 @@ public class Block{
     public Block(String data, String previousHash){
         this.data = data;
         this.previousHash = previousHash;
-        // this.hash = havent created the method yet
+        this.hash = this.calculateHash();
         this.time = new Date().getTime();
     }
+
+
+    // links the previous hash
+    public String calculateHash() {
+	String calculatedhash = StringUtil.applySha256(previousHash + Long.toString(time) + data );
+	return calculatedhash;
+}
 }
